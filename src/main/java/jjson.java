@@ -53,6 +53,7 @@ public class jjson implements serv {
 		this.serv.createContext(ROOT, http -> {
 			
 			InputStreamReader isr = new InputStreamReader(http.getRequestBody());
+			String filename = http.getRequestURI().getPath();
             final String jsonRequest = new BufferedReader(isr).lines().collect(Collectors.joining());
             System.out.println("request:" + jsonRequest);
             String jsonResponse;
@@ -77,7 +78,7 @@ public class jjson implements serv {
                 jsonError.addProperty("errorCode", e.hashCode());
                 jsonError.addProperty("errorMessage, errorPlace", e.getMessage());
                 // jsonError.addProperty("errorPlace", e.getStackTrace()); - place
-                jsonError.addProperty("resource", jsonRequest);
+                jsonError.addProperty("resource", filename);
                 jsonError.addProperty("request-id", id);
                 
                 jsonResponse = builder.toJson(jsonError);
