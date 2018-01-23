@@ -77,7 +77,6 @@ public class jjson implements serv {
                 JsonObject jsonError = new JsonObject();
                 jsonError.addProperty("errorCode", e.hashCode());
                 jsonError.addProperty("errorMessage, errorPlace", e.getMessage());
-                // jsonError.addProperty("errorPlace", e.getStackTrace()); - place
                 jsonError.addProperty("resource", filename);
                 jsonError.addProperty("request-id", id);
                 
