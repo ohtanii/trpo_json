@@ -3,9 +3,9 @@ FROM openjdk:alpine
 EXPOSE 80
 
 RUN apk add --no-cache maven
-ADD src /jjson/src
-ADD pom.xml /jjson/pom.xml
-WORKDIR /jjson
+ADD src /trpo_json/src
+ADD pom.xml /trpo_json/pom.xml
+WORKDIR /trpo_json
 RUN mvn clean install -e
 CMD ["java","-jar","target/jjson-0.0.1-SNAPSHOT-jar-with-dependencies.jar"]
 
