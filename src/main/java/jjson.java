@@ -62,6 +62,7 @@ public class jjson implements serv {
                 Object object = builder.fromJson(jsonRequest, Object.class);
                 jsonResponse = builder.toJson(object);
             } catch (JsonSyntaxException e) {
+		String[] kek= e.getMessage().split(" at ");
             	// get error
             	
             	/*	EXAMLPE: 
@@ -76,7 +77,8 @@ public class jjson implements serv {
             	
                 JsonObject jsonError = new JsonObject();
                 jsonError.addProperty("errorCode", e.hashCode());
-                jsonError.addProperty("errorMessage, errorPlace", e.getMessage());
+                jsonError.addProperty("errorMessage", kek[0]);
+                jsonError.addProperty("errorPlace", "at "+kek[1]);
                 jsonError.addProperty("resource", filename);
                 jsonError.addProperty("request-id", id);
                 
