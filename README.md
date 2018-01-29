@@ -20,15 +20,11 @@ curl -s —upload-file test.json http://localhost
 ________________________________________
 To run this project with gradle:
 1) Download this repo and unzip it.
-2) Open terminal in repo folder and make gradlew file executable:
-```
-chmod +x gradlew
-```
-3) Run a command:
+2) Open terminal in repo folder and run a command:
 ```
 ./gradlew createImage && docker run -d -p 80:80 jjson
 ```
-4) Send your file on validation:
+3) Send your file on validation:
 ```
 curl -s —upload-file test.json http://localhost
 ```
@@ -50,4 +46,4 @@ The error message will look like this:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
