@@ -1,0 +1,72 @@
+Started by user anaresh
+Obtained Jenkinsfile from git http://github.com/ohtanii/trpo_json
+Running in Durability level: MAX_SURVIVABILITY
+[Pipeline] node
+Running on Jenkins in /var/lib/jenkins/workspace/jjson
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (Declarative: Checkout SCM)
+[Pipeline] checkout
+Cloning the remote Git repository
+Cloning repository http://github.com/ohtanii/trpo_json
+ > git init /var/lib/jenkins/workspace/jjson # timeout=10
+Fetching upstream changes from http://github.com/ohtanii/trpo_json
+ > git --version # timeout=10
+ > git fetch --tags --progress http://github.com/ohtanii/trpo_json +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url http://github.com/ohtanii/trpo_json # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url http://github.com/ohtanii/trpo_json # timeout=10
+Fetching upstream changes from http://github.com/ohtanii/trpo_json
+ > git fetch --tags --progress http://github.com/ohtanii/trpo_json +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision 972c04c6c31eac3eac11486f15465da2171e59d8 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 972c04c6c31eac3eac11486f15465da2171e59d8
+Commit message: "Merge pull request #7 from ohtanii/task3"
+First time build. Skipping changelog.
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] withEnv
+[Pipeline] {
+[Pipeline] stage
+[Pipeline] { (1. Build)
+[Pipeline] sh
+[jjson] Running shell script
++ docker build -t jjson github.com/ohtanii/trpo_json
+Sending build context to Docker daemon  2.041MB
+
+Step 1/4 : FROM openjdk:alpine
+ ---> 224765a6bdbe
+Step 2/4 : EXPOSE 80
+ ---> Using cache
+ ---> 7e52732621cc
+Step 3/4 : ADD . /
+ ---> 8b5140760ca8
+Removing intermediate container 0076d61e7a03
+Step 4/4 : CMD java -jar /build/libs/jjson.jar
+ ---> Running in ba63e5e8c1a1
+ ---> 82365caa081a
+Removing intermediate container ba63e5e8c1a1
+Successfully built 82365caa081a
+Successfully tagged jjson:latest
+[Pipeline] echo
+Building was comleted successfully :) 
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] stage
+[Pipeline] { (2. Start)
+[Pipeline] sh
+[jjson] Running shell script
++ docker run -d --rm -p 80:80 jjson
+6cef9347754d9372976b4be136d3f86de5203fbec783c23685c2bdbc70213d03
+[Pipeline] echo
+Program is working now! Enjoy :) 
+[Pipeline] }
+[Pipeline] // stage
+[Pipeline] }
+[Pipeline] // withEnv
+[Pipeline] }
+[Pipeline] // node
+[Pipeline] End of Pipeline
+Finished: SUCCESS
